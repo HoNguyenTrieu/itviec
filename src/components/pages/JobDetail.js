@@ -6,6 +6,7 @@ import moment from "moment";
 const JobDetail = () => {
   const [getDetailJob, setGetDetailJob] = useState({});
   const [tag, setTag] = useState([]);
+  const [benefit, setBenefit] = useState([]);
   const { id } = useParams();
   console.log("What is in parameter", id);
   useEffect(() => {
@@ -16,6 +17,7 @@ const JobDetail = () => {
       console.log(data);
       setGetDetailJob(data);
       setTag(data.tags);
+      setBenefit(data.benefits);
     };
     getSingleJob();
   }, []);
@@ -46,6 +48,13 @@ const JobDetail = () => {
                 </Badge>
               ))}
               <Card.Text>$ {getDetailJob.salary}</Card.Text>
+              <h3>Benefit</h3>
+              {benefit.map((item) => (
+                <ul>
+                  <li key={getDetailJob.id}>{item}</li>
+                </ul>
+              ))}
+              <h3>Description</h3>
               <Card.Text>{getDetailJob.description}</Card.Text>
             </Card.Body>
           </Card>
