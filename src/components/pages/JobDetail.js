@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // useParams use to get parameter of the dynamic url
 import { Badge, Card, Media } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-
+import moment from "moment";
 const JobDetail = () => {
   const [getDetailJob, setGetDetailJob] = useState({});
   const [tag, setTag] = useState([]);
@@ -30,25 +30,6 @@ const JobDetail = () => {
         style={{ minHeight: "50vh" }}
       >
         <div className="d-flex justify-content-center">
-          {/* <Media key={getDetailJob.id} border="primary">
-          <img
-            width={64}
-            height={64}
-            className="mr-3"
-            src={getDetailJob.img}
-            alt="Generic placeholder"
-          />
-          <Media.Body>
-            <h5>{getDetailJob.title}</h5>
-            {tag.map((item) => (
-              <Badge className="ml-1" variant="secondary">
-                {item}
-              </Badge>
-            ))}
-            <p>{getDetailJob.salary}</p>
-            <p>{getDetailJob.description}</p>
-          </Media.Body>
-        </Media> */}
           <Card
             bg="info"
             text="white"
@@ -58,6 +39,7 @@ const JobDetail = () => {
             <Card.Header>{getDetailJob.title}</Card.Header>
             <Card.Body>
               <Card.Title> Công việc hấp dẫn </Card.Title>
+              <p>{moment(getDetailJob.time).fromNow()}</p>
               {tag.map((item) => (
                 <Badge className="mr-1" variant="secondary">
                   {item}
